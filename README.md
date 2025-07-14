@@ -276,26 +276,6 @@ To get your TRACE API credentials:
 | **Evidently** | ✅ | LLM evaluations, Data drift, Model monitoring | [`providers.evidently`](src/rai_trace/providers/evidently/evidently.py) |
 | **Opik** | ✅ | Experiment tracking, Model comparison | [`providers.opik`](src/rai_trace/providers/opik/opik.py) |
 
-### Provider Capabilities
-
-#### DeepEval Metrics
-- **Answer Relevancy**: Measures how relevant the answer is to the question
-- **Faithfulness**: Evaluates if the answer is grounded in the given context
-- **Hallucination**: Detects factual inconsistencies in responses
-- **Bias**: Identifies potential biases in model outputs
-
-#### Evidently Metrics
-- **Data Drift**: Monitors changes in input data distribution
-- **Model Quality**: Tracks model performance over time
-- **Prediction Drift**: Detects shifts in model predictions
-
-#### Opik Metrics
-- **Experiment Tracking**: Compare different model versions
-- **Performance Monitoring**: Track model metrics across experiments
-- **Model Comparison**: Side-by-side evaluation of models
-
----
-
 ### Development Setup
 
 ```bash
