@@ -3,8 +3,6 @@
 A comprehensive tracing and monitoring library for ML/AI applications that provides seamless integration with multiple evaluation providers including **DeepEval**, **Evidently**, and **Opik**.
 
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
 ---
 
 ## 🌟 Features
@@ -290,18 +288,6 @@ Posts Opik-specific metrics with predefined configuration.
 **Returns:**
 - `dict or None`: Response JSON from the API, or None if error
 
-### Metrics API Classes
-
-#### `MetricsCollector`
-
-Collects and manages metrics with type validation.
-
-#### `MetricResult`
-
-Represents individual metric results with metadata.
-
----
-
 ## 🔐 Authentication
 
 To get your TRACE API credentials:
@@ -341,16 +327,6 @@ To get your TRACE API credentials:
 
 ---
 
-## 🤝 Contributing
-
-We welcome contributions! Here's how to get started:
-
-1. **Fork** the repository
-2. **Create** a feature branch (`git checkout -b feature/amazing-feature`)
-3. **Commit** your changes (`git commit -m 'Add amazing feature'`)
-4. **Push** to the branch (`git push origin feature/amazing-feature`)
-5. **Open** a Pull Request
-
 ### Development Setup
 
 ```bash
@@ -369,20 +345,7 @@ pip install pytest black flake8  # Development dependencies
 
 ---
 
-## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-## 📞 Support
-
-- **Documentation**: Check our [docs](src/rai_trace/docs/) folder
-- **Examples**: See [examples](src/rai_trace/examples/) directory
-- **Issues**: [GitHub Issues](https://github.com/your-username/trace/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/your-username/trace/discussions)
-
----
 
 ## 🏆 Acknowledgments
 
@@ -393,16 +356,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-## 🔄 Changelog
-
-### v0.1.0 (Current)
-- Initial release
-- Multi-provider support (DeepEval, Evidently, Opik)
-- Core metrics API
-- Provider-specific functions
-- Documentation and examples
-- Finance domain tutorial
-
----
-
-**Made with ❤️ for the AI/ML community**
