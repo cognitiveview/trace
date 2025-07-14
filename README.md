@@ -1,6 +1,6 @@
-# 🚀 RAI Trace SDK
+# 🚀 RAI Trace API
 
-A comprehensive tracing and monitoring library for ML/AI applications that provides seamless integration with multiple evaluation providers including **DeepEval**, **Evidently**, and **Opik**.
+A lightweight Python API to post ML/AI evaluation metrics from **Evidently**, **DeepEval**, and **Opik** to the TRACE Metric API — enabling seamless tracking and reports aligned with **NIST AI RMF**, **EU AI Act**,  and other AI governance frameworks
 
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 ---
@@ -24,7 +24,6 @@ trace/
 ├── src/
 │   └── rai_trace/
 │       ├── __init__.py                 # Main package exports
-│       ├── metrics_api.py              # Core metrics handling
 │       ├── trace_metrics_api.py        # TRACE API integration
 │       ├── docs/                       # Documentation
 │       │   ├── QuickStart/            # Provider quickstart guides
@@ -66,28 +65,6 @@ cd trace
 pip install -e .
 ```
 
-### Option 2: Install Dependencies
-
-```bash
-pip install requests pandas numpy typing-extensions
-```
-
-### Optional Provider Dependencies
-
-For specific providers, install their dependencies:
-
-```bash
-# For DeepEval
-pip install deepeval
-
-# For Evidently
-pip install evidently
-
-# For Opik
-pip install opik
-```
-
----
 
 ## 🚀 Quick Start
 
@@ -183,25 +160,6 @@ response = post_opik_metrics_to_TRACE_Metric_API(
 )
 ```
 
-### Using the Metrics API
-
-```python
-from rai_trace.metrics_api import MetricsCollector, MetricResult
-
-# Initialize collector
-collector = MetricsCollector()
-
-# Add metrics
-collector.add_metric("accuracy", 0.95, "float")
-collector.add_metric("latency", 120.5, "float", "ms")
-
-# Get summary
-summary = collector.get_summary()
-print(f"Total metrics: {summary['total_metrics']}")
-print(f"Average score: {summary['average_value']:.3f}")
-```
-
----
 
 ## 📚 Documentation & Examples
 
@@ -254,39 +212,50 @@ Posts evaluation metrics to the TRACE Metric API with flexible provider support.
 
 #### `post_deepeval_metrics_to_TRACE_Metric_API()`
 
-Posts DeepEval-specific metrics with predefined configuration.
+Posts DeepEval-specific metrics with user-defined application metadata.
 
 **Parameters:**
-- `metric_results` (dict): Dictionary of computed metric scores
+- `metric_results` (Dict[str, Any]): Dictionary of computed metric scores
 - `auth_token` (str): Authorization token for the API
 - `user_id` (str): User ID for the API
+- `application_name` (str): Name of the application posting metrics
+- `version` (str): Version of the application
+- `url` (str): URL of the application or API endpoint
+- `use_case` (str): Use case or domain (e.g., "transportation", "finance", "healthcare")
 
 **Returns:**
-- `dict or None`: Response JSON from the API, or None if error
+- `Optional[Dict[str, Any]]`: Response JSON from the API, or None if error
 
 #### `post_evidently_metrics_to_TRACE_Metric_API()`
 
-Posts Evidently-specific metrics with predefined configuration.
+Posts Evidently-specific metrics with user-defined application metadata.
 
 **Parameters:**
-- `metric_results` (dict): Dictionary of computed metric scores
+- `metric_results` (Dict[str, Any]): Dictionary of computed metric scores
 - `auth_token` (str): Authorization token for the API
 - `user_id` (str): User ID for the API
+- `application_name` (str): Name of the application posting metrics
+- `url` (str): URL of the application or API endpoint
+- `use_case` (str): Use case or domain (e.g., "transportation", "finance", "healthcare")
 
 **Returns:**
-- `dict or None`: Response JSON from the API, or None if error
+- `Optional[Dict[str, Any]]`: Response JSON from the API, or None if error
 
 #### `post_opik_metrics_to_TRACE_Metric_API()`
 
-Posts Opik-specific metrics with predefined configuration.
+Posts Opik-specific metrics with user-defined application metadata.
 
 **Parameters:**
-- `metric_results` (dict): Dictionary of computed metric scores
+- `metric_results` (Dict[str, Any]): Dictionary of computed metric scores
 - `auth_token` (str): Authorization token for the API
 - `user_id` (str): User ID for the API
+- `application_name` (str): Name of the application posting metrics
+- `version` (str): Version of the application
+- `url` (str): URL of the application or API endpoint
+- `use_case` (str): Use case or domain (e.g., "transportation", "finance", "healthcare")
 
 **Returns:**
-- `dict or None`: Response JSON from the API, or None if error
+- `Optional[Dict[str, Any]]`: Response JSON from the API, or None if error
 
 ## 🔐 Authentication
 
