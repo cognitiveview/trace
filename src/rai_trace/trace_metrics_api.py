@@ -14,7 +14,6 @@ from typing import Dict, Any, Optional
 def post_metrics_to_TRACE_Metric_API(
     metric_results: Dict[str, Any],
     auth_token: str,
-    user_id: str,
     provider: str,
     application_name: str,
     version: str,
@@ -37,8 +36,8 @@ def post_metrics_to_TRACE_Metric_API(
     Returns:
         Response JSON from the API as a dictionary, or None if an error occurs or response is not JSON.
     """
-    BASE_URL = "https://api.cognitiveview.com"
-    api_url = f"{BASE_URL}/cv/v1/metrics"
+    BASE_URL = "https://app.cognitiveview.com"
+    api_url = f"{BASE_URL}/api/cv/v1/metrics"
 
     headers = {
         "Authorization": auth_token,
