@@ -1,4 +1,4 @@
-# 🚀 RAI Trace API
+# 🚀 RAI Trace Metric API
 
 A lightweight Python API to post ML/AI evaluation metrics from **Evidently**, **DeepEval**, and **Opik** to the TRACE Metric API — enabling seamless tracking and reports aligned with **NIST AI RMF**, **EU AI Act**,  and other AI governance frameworks
 
