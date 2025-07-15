@@ -4,7 +4,6 @@ trace_metric_api.py
 Reusable helper module to post metric results from different providers
 (e.g., 'evidently', 'deepeval', 'opik') to the TRACE Metric API.
 
-Author: Your Name or Project Name
 License: Add your license here (e.g., MIT, Apache-2.0)
 """
 
@@ -44,7 +43,6 @@ def post_metrics_to_TRACE_Metric_API(
     headers = {
         "Authorization": auth_token,
         "Content-Type": "application/json",
-        "X-User-Id": user_id,
     }
 
     payload = {
@@ -52,7 +50,7 @@ def post_metrics_to_TRACE_Metric_API(
             "application_name": application_name,
             "version": version,
             "url": url,
-            "provider": provider,
+            "eval_provider": provider,
             "use_case": use_case
         },
         "metric_data": {
@@ -63,12 +61,14 @@ def post_metrics_to_TRACE_Metric_API(
     try:
         response = requests.post(api_url, headers=headers, json=payload)
         print(f"Status Code: {response.status_code}")
+        print(f"Request payload: {payload}")  # Debug: show what we're sending
         response.raise_for_status()
         json_response = response.json()
         print("Response JSON:", json_response)
         return json_response
     except requests.exceptions.HTTPError as http_err:
         print(f"HTTP error occurred: {http_err}")
+        print(f"Response text: {response.text}")  # Show the actual error message
     except Exception as err:
         print(f"An error occurred: {err}")
         print("Response Text:", response.text if response else "No response")

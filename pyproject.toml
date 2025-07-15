@@ -3,7 +3,9 @@ name = "rai_trace"
 version = "0.1.0"
 description = "A comprehensive tracing and monitoring library for ML/AI applications"
 authors = []
-dependencies = []
+dependencies = [
+    "requests>=2.32.4",
+]
 readme = "README.md"
 requires-python = ">= 3.8"
 

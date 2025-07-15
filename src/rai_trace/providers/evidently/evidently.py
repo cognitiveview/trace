@@ -13,7 +13,6 @@ from typing import Dict, Any, Optional
 def post_evidently_metrics_to_TRACE_Metric_API(
     metric_results: Dict[str, Any], 
     auth_token: str, 
-    user_id: str,
     application_name: str,
     version: str,
     url: str,
@@ -25,7 +24,6 @@ def post_evidently_metrics_to_TRACE_Metric_API(
     Args:
         metric_results (Dict[str, Any]): Dictionary of computed metric scores.
         auth_token (str): Authorization token for the API.
-        user_id (str): User ID for the API.
         application_name (str): Name of the application posting metrics.
         version (str): Version of the application.
         url (str): URL of the application or API endpoint.
@@ -34,13 +32,12 @@ def post_evidently_metrics_to_TRACE_Metric_API(
     Returns:
         Optional[Dict[str, Any]]: Response JSON from the API, or None if error occurs.
     """
-    BASE_URL = "https://api.cognitiveview.com"
-    api_url = f"{BASE_URL}/cv/v1/metrics"
+    BASE_URL = "https://app.cognitiveview.com"
+    api_url = f"{BASE_URL}/api/cv/v1/metrics"
 
     headers = {
         "Authorization": auth_token,
         "Content-Type": "application/json",
-        "X-User-Id": user_id,
     }
 
     payload = {
@@ -75,7 +72,6 @@ def post_evidently_metrics_to_TRACE_Metric_API(
 # if __name__ == "__main__":
 #     # Replace with your actual credentials
 #     AUTH_TOKEN = "Your-Authorization-Token-Here"
-#     USER_ID = "Your-User-ID-Here"
 #
 #     # Example metric results from Evidently evaluation
 #     metric_results = {
@@ -94,7 +90,6 @@ def post_evidently_metrics_to_TRACE_Metric_API(
 #     response = post_evidently_metrics_to_TRACE_Metric_API(
 #         metric_results=metric_results,
 #         auth_token=AUTH_TOKEN,
-#         user_id=USER_ID,
 #         application_name=application_name,
 #         version=version,
 #         url=url,

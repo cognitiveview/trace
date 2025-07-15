@@ -75,7 +75,6 @@ from rai_trace.trace_metrics_api import post_metrics_to_TRACE_Metric_API
 
 # Your credentials
 AUTH_TOKEN = "your-authorization-token"
-USER_ID = "your-user-id"
 
 # Metric results from your evaluation
 metric_results = {
@@ -89,7 +88,6 @@ metric_results = {
 response = post_metrics_to_TRACE_Metric_API(
     metric_results=metric_results,
     auth_token=AUTH_TOKEN,
-    user_id=USER_ID,
     provider="deepeval",
     application_name="my-chatbot",
     version="1.0.0",
@@ -108,7 +106,6 @@ print(response)
 from rai_trace.providers.deepeval.deepeval import post_deepeval_metrics_to_TRACE_Metric_API
 
 AUTH_TOKEN = "your-authorization-token"
-USER_ID = "your-user-id"
 
 metric_results = {
     "answer_relevancy": 0.95,
@@ -118,7 +115,12 @@ metric_results = {
 }
 
 response = post_deepeval_metrics_to_TRACE_Metric_API(
-    metric_results, AUTH_TOKEN, USER_ID
+    metric_results=metric_results,
+    auth_token=AUTH_TOKEN,
+    application_name="my-chatbot",
+    version="1.0.0",
+    url="https://api.example.com/chat",
+    use_case="customer_support"
 )
 ```
 
@@ -128,7 +130,6 @@ response = post_deepeval_metrics_to_TRACE_Metric_API(
 from rai_trace.providers.evidently.evidently import post_evidently_metrics_to_TRACE_Metric_API
 
 AUTH_TOKEN = "your-authorization-token"
-USER_ID = "your-user-id"
 
 metric_results = {
     "data_drift": 0.15,
@@ -137,7 +138,12 @@ metric_results = {
 }
 
 response = post_evidently_metrics_to_TRACE_Metric_API(
-    metric_results, AUTH_TOKEN, USER_ID
+    metric_results=metric_results,
+    auth_token=AUTH_TOKEN,
+    application_name="fraud-detection-model",
+    version="2.1.0",
+    url="https://api.mycompany.com/fraud-detection",
+    use_case="finance"
 )
 ```
 
@@ -147,7 +153,6 @@ response = post_evidently_metrics_to_TRACE_Metric_API(
 from rai_trace.providers.opik.opik import post_opik_metrics_to_TRACE_Metric_API
 
 AUTH_TOKEN = "your-authorization-token"
-USER_ID = "your-user-id"
 
 metric_results = {
     "experiment_score": 0.91,
@@ -156,7 +161,12 @@ metric_results = {
 }
 
 response = post_opik_metrics_to_TRACE_Metric_API(
-    metric_results, AUTH_TOKEN, USER_ID
+    metric_results=metric_results,
+    auth_token=AUTH_TOKEN,
+    application_name="recommendation-engine",
+    version="3.2.1",
+    url="https://api.mycompany.com/recommendations",
+    use_case="e-commerce"
 )
 ```
 
@@ -198,7 +208,6 @@ Posts evaluation metrics to the TRACE Metric API with flexible provider support.
 **Parameters:**
 - `metric_results` (Dict[str, Any]): Dictionary of computed metric scores
 - `auth_token` (str): Authorization token for the API
-- `user_id` (str): User ID for authentication
 - `provider` (str): Metric provider ('deepeval', 'evidently', 'opik')
 - `application_name` (str): Name of your application
 - `version` (str): Application version
@@ -217,7 +226,6 @@ Posts DeepEval-specific metrics with user-defined application metadata.
 **Parameters:**
 - `metric_results` (Dict[str, Any]): Dictionary of computed metric scores
 - `auth_token` (str): Authorization token for the API
-- `user_id` (str): User ID for the API
 - `application_name` (str): Name of the application posting metrics
 - `version` (str): Version of the application
 - `url` (str): URL of the application or API endpoint
@@ -233,8 +241,8 @@ Posts Evidently-specific metrics with user-defined application metadata.
 **Parameters:**
 - `metric_results` (Dict[str, Any]): Dictionary of computed metric scores
 - `auth_token` (str): Authorization token for the API
-- `user_id` (str): User ID for the API
 - `application_name` (str): Name of the application posting metrics
+- `version` (str): Version of the application
 - `url` (str): URL of the application or API endpoint
 - `use_case` (str): Use case or domain (e.g., "transportation", "finance", "healthcare")
 
@@ -248,7 +256,6 @@ Posts Opik-specific metrics with user-defined application metadata.
 **Parameters:**
 - `metric_results` (Dict[str, Any]): Dictionary of computed metric scores
 - `auth_token` (str): Authorization token for the API
-- `user_id` (str): User ID for the API
 - `application_name` (str): Name of the application posting metrics
 - `version` (str): Version of the application
 - `url` (str): URL of the application or API endpoint
@@ -264,7 +271,9 @@ To get your TRACE API credentials:
 1. **Sign in** to [CognitiveView](https://app.cognitiveview.com)
 2. **Navigate** to System Settings
 3. **Generate** your subscription key
-4. **Copy** your User ID and Authorization token
+4. **Copy** your Authorization token
+
+**Note**: User ID is no longer required - authentication is handled through the JWT token.
 
 ---
 
@@ -276,7 +285,7 @@ To get your TRACE API credentials:
 | **Evidently** | ✅ | LLM evaluations, Data drift, Model monitoring | [`providers.evidently`](src/rai_trace/providers/evidently/evidently.py) |
 | **Opik** | ✅ | Experiment tracking, Model comparison | [`providers.opik`](src/rai_trace/providers/opik/opik.py) |
 
-### Provider Capabilities
+
 
 #### DeepEval Metrics
 - **Answer Relevancy**: Measures how relevant the answer is to the question
