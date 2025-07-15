@@ -32,8 +32,8 @@ def post_deepeval_metrics_to_TRACE_Metric_API(
     Returns:
         Optional[Dict[str, Any]]: Response JSON from the API, or None if error occurs.
     """
-    BASE_URL = "https://api.cognitiveview.com"
-    api_url = f"{BASE_URL}/cv/v1/metrics"
+    BASE_URL = "https://app.cognitiveview.com"
+    api_url = f"{BASE_URL}/api/cv/v1/metrics"
 
     headers = {
         "Authorization": auth_token,
@@ -45,7 +45,7 @@ def post_deepeval_metrics_to_TRACE_Metric_API(
             "application_name": application_name,
             "version": version,
             "url": url,
-            "provider": "deepeval",
+            "eval_provider": "deepeval",
             "use_case": use_case
         },
         "metric_data": {

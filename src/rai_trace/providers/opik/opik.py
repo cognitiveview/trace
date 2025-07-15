@@ -45,7 +45,7 @@ def post_opik_metrics_to_TRACE_Metric_API(
             "application_name": application_name,
             "version": version,
             "url": url,
-            "provider": "opik",
+            "eval_provider": "opik",
             "use_case": use_case
         },
         "metric_data": {

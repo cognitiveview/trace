@@ -45,7 +45,7 @@ def post_evidently_metrics_to_TRACE_Metric_API(
             "application_name": application_name,
             "version": version,
             "url": url,
-            "provider": "evidently",
+            "eval_provider": "evidently",
             "use_case": use_case
         },
         "metric_data": {
