@@ -15,7 +15,6 @@ def post_deepeval_metrics_to_TRACE_Metric_API(
     auth_token: str, 
     application_name: str,
     version: str,
-    url: str,
     use_case: str
 ) -> Optional[Dict[str, Any]]:
     """
@@ -36,7 +35,7 @@ def post_deepeval_metrics_to_TRACE_Metric_API(
     api_url = f"{BASE_URL}/metrics"
 
     headers = {
-        "Authorization": auth_token,
+        "Ocp-Apim-Subscription-Key": auth_token,
         "Content-Type": "application/json",
     }
 
@@ -44,7 +43,6 @@ def post_deepeval_metrics_to_TRACE_Metric_API(
         "metric_metadata": {
             "application_name": application_name,
             "version": version,
-            "url": url,
             "eval_provider": "deepeval",
             "use_case": use_case
         },

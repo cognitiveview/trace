@@ -15,7 +15,6 @@ def post_evidently_metrics_to_TRACE_Metric_API(
     auth_token: str, 
     application_name: str,
     version: str,
-    url: str,
     use_case: str
 ) -> Optional[Dict[str, Any]]:
     """
