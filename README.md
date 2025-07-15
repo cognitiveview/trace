@@ -78,11 +78,13 @@ AUTH_TOKEN = "your-subscription-key"  # Your subscription key from CognitiveView
 
 # Metric results from your evaluation
 metric_results = {
-    "accuracy": 0.92,
-    "f1_score": 0.88,
-    "precision": 0.90,
-    "recall": 0.85
-}
+        "AnswerRelevancyMetric": 85,
+        "ContextualPrecisionMetric": 92,
+        "ContextualRecallMetric": 78,
+        "ContextualRelevancyMetric": 88,
+        "ConversationCompletenessMetric": 95,
+        "ConversationRelevancyMetric": 82
+    }
 
 # Post to TRACE API
 response = post_metrics_to_TRACE_Metric_API(
@@ -91,7 +93,6 @@ response = post_metrics_to_TRACE_Metric_API(
     provider="deepeval",
     application_name="my-chatbot",
     version="1.0.0",
-    url="https://api.example.com/chat",
     use_case="customer_support"
 )
 
@@ -108,10 +109,9 @@ from rai_trace.providers.deepeval.deepeval import post_deepeval_metrics_to_TRACE
 AUTH_TOKEN = "your-subscription-key"  # Your subscription key from CognitiveView
 
 metric_results = {
-    "answer_relevancy": 0.95,
-    "faithfulness": 0.92,
-    "hallucination": 0.08,
-    "bias": 0.05
+    "AnswerRelevancyMetric": 85,
+    "ContextualPrecisionMetric": 92,
+    "ContextualRecallMetric": 78,
 }
 
 response = post_deepeval_metrics_to_TRACE_Metric_API(
@@ -119,7 +119,6 @@ response = post_deepeval_metrics_to_TRACE_Metric_API(
     auth_token=AUTH_TOKEN,
     application_name="my-chatbot",
     version="1.0.0",
-    url="https://api.example.com/chat",
     use_case="customer_support"
 )
 ```
@@ -132,9 +131,9 @@ from rai_trace.providers.evidently.evidently import post_evidently_metrics_to_TR
 AUTH_TOKEN = "your-subscription-key"  # Your subscription key from CognitiveView
 
 metric_results = {
-    "data_drift": 0.15,
-    "model_quality": 0.88,
-    "prediction_drift": 0.12
+    "FaithfulnessLLMEval": 0.15,
+    "ContextRelevance": 0.88,
+    "BLEU": 0.12
 }
 
 response = post_evidently_metrics_to_TRACE_Metric_API(
@@ -142,7 +141,6 @@ response = post_evidently_metrics_to_TRACE_Metric_API(
     auth_token=AUTH_TOKEN,
     application_name="fraud-detection-model",
     version="2.1.0",
-    url="https://api.mycompany.com/fraud-detection",
     use_case="finance"
 )
 ```
@@ -155,9 +153,8 @@ from rai_trace.providers.opik.opik import post_opik_metrics_to_TRACE_Metric_API
 AUTH_TOKEN = "your-subscription-key"  # Your subscription key from CognitiveView
 
 metric_results = {
-    "experiment_score": 0.91,
-    "model_performance": 0.87,
-    "training_accuracy": 0.93
+    "Equals": 0.91,
+    "Moderation": 0.87,
 }
 
 response = post_opik_metrics_to_TRACE_Metric_API(
@@ -165,7 +162,6 @@ response = post_opik_metrics_to_TRACE_Metric_API(
     auth_token=AUTH_TOKEN,
     application_name="recommendation-engine",
     version="3.2.1",
-    url="https://api.mycompany.com/recommendations",
     use_case="e-commerce"
 )
 ```
@@ -191,9 +187,6 @@ Run the included examples:
 # Basic usage example
 python src/rai_trace/examples/main.py
 
-# Advanced metrics example
-python src/rai_trace/examples/metrics_example.py
-```
 
 ---
 
@@ -211,7 +204,6 @@ Posts evaluation metrics to the TRACE Metric API with flexible provider support.
 - `provider` (str): Metric provider ('deepeval', 'evidently', 'opik')
 - `application_name` (str): Name of your application
 - `version` (str): Application version
-- `url` (str): Application URL
 - `use_case` (str): Use case description
 
 **Returns:**
@@ -228,7 +220,6 @@ Posts DeepEval-specific metrics with user-defined application metadata.
 - `auth_token` (str): Subscription key for the API (from CognitiveView)
 - `application_name` (str): Name of the application posting metrics
 - `version` (str): Version of the application
-- `url` (str): URL of the application or API endpoint
 - `use_case` (str): Use case or domain (e.g., "transportation", "finance", "healthcare")
 
 **Returns:**
@@ -243,7 +234,6 @@ Posts Evidently-specific metrics with user-defined application metadata.
 - `auth_token` (str): Subscription key for the API (from CognitiveView)
 - `application_name` (str): Name of the application posting metrics
 - `version` (str): Version of the application
-- `url` (str): URL of the application or API endpoint
 - `use_case` (str): Use case or domain (e.g., "transportation", "finance", "healthcare")
 
 **Returns:**
@@ -258,7 +248,6 @@ Posts Opik-specific metrics with user-defined application metadata.
 - `auth_token` (str): Subscription key for the API (from CognitiveView)
 - `application_name` (str): Name of the application posting metrics
 - `version` (str): Version of the application
-- `url` (str): URL of the application or API endpoint
 - `use_case` (str): Use case or domain (e.g., "transportation", "finance", "healthcare")
 
 **Returns:**

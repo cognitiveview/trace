@@ -15,7 +15,6 @@ def post_opik_metrics_to_TRACE_Metric_API(
     auth_token: str, 
     application_name: str,
     version: str,
-    url: str,
     use_case: str
 ) -> Optional[Dict[str, Any]]:
     """
@@ -26,17 +25,16 @@ def post_opik_metrics_to_TRACE_Metric_API(
         auth_token (str): Authorization token for the API.
         application_name (str): Name of the application posting metrics.
         version (str): Version of the application.
-        url (str): URL of the application or API endpoint.
         use_case (str): Use case or domain (e.g., "transportation", "finance", "healthcare").
 
     Returns:
         Optional[Dict[str, Any]]: Response JSON from the API, or None if error occurs.
     """
-    BASE_URL = "https://app.cognitiveview.com"
-    api_url = f"{BASE_URL}/api/cv/v1/metrics"
+    BASE_URL = "https://api.cognitiveview.com"
+    api_url = f"{BASE_URL}/metrics"
 
     headers = {
-        "Authorization": auth_token,
+        "Ocp-Apim-Subscription-Key": auth_token,
         "Content-Type": "application/json",
     }
 
@@ -44,7 +42,6 @@ def post_opik_metrics_to_TRACE_Metric_API(
         "metric_metadata": {
             "application_name": application_name,
             "version": version,
-            "url": url,
             "eval_provider": "opik",
             "use_case": use_case
         },

@@ -21,20 +21,8 @@ def main():
 
     application_name = "chat-application"
     version = "1.0.0"
-    url = "https://api.example.com/chat"
     use_case = "transportation"
 
-    # Post metrics for different providers
-    # print("\nPosting Evidently metrics:")
-    # post_metrics_to_TRACE_Metric_API(
-    #     metric_results,
-    #     AUTH_TOKEN,
-    #     provider="evidently",
-    #     application_name=application_name,
-    #     version=version,
-    #     url=url,
-    #     use_case=use_case
-    # )
 
     print("\nPosting DeepEval metrics:")
     post_metrics_to_TRACE_Metric_API(
@@ -45,17 +33,6 @@ def main():
         version=version,
         use_case=use_case
     )
-
-    # print("\nPosting Opik metrics:")
-    # post_metrics_to_TRACE_Metric_API(
-    #     metric_results,
-    #     AUTH_TOKEN,
-    #     provider="opik",
-    #     application_name=application_name,
-    #     version=version,
-    #     url=url,
-    #     use_case=use_case
-    # )
 
 
 if __name__ == "__main__":
