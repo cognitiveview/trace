@@ -74,7 +74,7 @@ pip install -e .
 from rai_trace.trace_metrics_api import post_metrics_to_TRACE_Metric_API
 
 # Your credentials
-AUTH_TOKEN = "your-authorization-token"
+AUTH_TOKEN = "your-subscription-key"  # Your subscription key from CognitiveView
 
 # Metric results from your evaluation
 metric_results = {
@@ -105,7 +105,7 @@ print(response)
 ```python
 from rai_trace.providers.deepeval.deepeval import post_deepeval_metrics_to_TRACE_Metric_API
 
-AUTH_TOKEN = "your-authorization-token"
+AUTH_TOKEN = "your-subscription-key"  # Your subscription key from CognitiveView
 
 metric_results = {
     "answer_relevancy": 0.95,
@@ -129,7 +129,7 @@ response = post_deepeval_metrics_to_TRACE_Metric_API(
 ```python
 from rai_trace.providers.evidently.evidently import post_evidently_metrics_to_TRACE_Metric_API
 
-AUTH_TOKEN = "your-authorization-token"
+AUTH_TOKEN = "your-subscription-key"  # Your subscription key from CognitiveView
 
 metric_results = {
     "data_drift": 0.15,
@@ -152,7 +152,7 @@ response = post_evidently_metrics_to_TRACE_Metric_API(
 ```python
 from rai_trace.providers.opik.opik import post_opik_metrics_to_TRACE_Metric_API
 
-AUTH_TOKEN = "your-authorization-token"
+AUTH_TOKEN = "your-subscription-key"  # Your subscription key from CognitiveView
 
 metric_results = {
     "experiment_score": 0.91,
@@ -207,7 +207,7 @@ Posts evaluation metrics to the TRACE Metric API with flexible provider support.
 
 **Parameters:**
 - `metric_results` (Dict[str, Any]): Dictionary of computed metric scores
-- `auth_token` (str): Authorization token for the API
+- `auth_token` (str): Subscription key for the API (from CognitiveView)
 - `provider` (str): Metric provider ('deepeval', 'evidently', 'opik')
 - `application_name` (str): Name of your application
 - `version` (str): Application version
@@ -225,7 +225,7 @@ Posts DeepEval-specific metrics with user-defined application metadata.
 
 **Parameters:**
 - `metric_results` (Dict[str, Any]): Dictionary of computed metric scores
-- `auth_token` (str): Authorization token for the API
+- `auth_token` (str): Subscription key for the API (from CognitiveView)
 - `application_name` (str): Name of the application posting metrics
 - `version` (str): Version of the application
 - `url` (str): URL of the application or API endpoint
@@ -240,7 +240,7 @@ Posts Evidently-specific metrics with user-defined application metadata.
 
 **Parameters:**
 - `metric_results` (Dict[str, Any]): Dictionary of computed metric scores
-- `auth_token` (str): Authorization token for the API
+- `auth_token` (str): Subscription key for the API (from CognitiveView)
 - `application_name` (str): Name of the application posting metrics
 - `version` (str): Version of the application
 - `url` (str): URL of the application or API endpoint
@@ -255,7 +255,7 @@ Posts Opik-specific metrics with user-defined application metadata.
 
 **Parameters:**
 - `metric_results` (Dict[str, Any]): Dictionary of computed metric scores
-- `auth_token` (str): Authorization token for the API
+- `auth_token` (str): Subscription key for the API (from CognitiveView)
 - `application_name` (str): Name of the application posting metrics
 - `version` (str): Version of the application
 - `url` (str): URL of the application or API endpoint
@@ -271,9 +271,18 @@ To get your TRACE API credentials:
 1. **Sign in** to [CognitiveView](https://app.cognitiveview.com)
 2. **Navigate** to System Settings
 3. **Generate** your subscription key
-4. **Copy** your Authorization token
+4. **Copy** your subscription key
 
-**Note**: User ID is no longer required - authentication is handled through the JWT token.
+### API Endpoint Configuration
+
+| Item         | Value                                                      |
+|--------------|-----------------------------------------------------------|
+| **Base URL** | `https://api.cognitiveview.com`                            |
+| **API Path** | `/metrics`                                          |
+| **Full URL** | `https://api.cognitiveview.com/metrics`             |
+| **Authentication** | `Ocp-Apim-Subscription-Key` header                 |
+
+**Note**: Authentication is handled through the `Ocp-Apim-Subscription-Key` header with your subscription key.
 
 ---
 

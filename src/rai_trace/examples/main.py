@@ -43,7 +43,6 @@ def main():
         provider="deepeval",
         application_name=application_name,
         version=version,
-        url=url,
         use_case=use_case
     )
 
