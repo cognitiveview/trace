@@ -187,6 +187,9 @@ Run the included examples:
 # Basic usage example
 python src/rai_trace/examples/main.py
 
+# Advanced metrics example
+python src/rai_trace/examples/metrics_example.py
+```
 
 ---
 
